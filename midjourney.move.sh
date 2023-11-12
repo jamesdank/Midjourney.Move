@@ -8,7 +8,15 @@ ZIP_FOLDER="/home/$USER/midjourney/Zip.Files/"
 MIDJOURNEY_FOLDER="/home/$USER/midjourney/"
 ######################################################################
 
+mkdir -p $MIDJOURNEY_FOLDER
+mkdir -p $ZIP_FOLDER
+
 cd $ZIP_FOLDER
+
+if ! test -f *zip ; then
+  echo "No zip files found in" $ZIP_FOLDER
+  exit 0
+fi
 
 echo -e "\nUnzipping Files..."
 sleep 2
@@ -21,6 +29,8 @@ mkdir ${MIDJOURNEY_FOLDER}midjourney-$(date +%Y-%m-%d_%H%M%S)
 cd $MIDJOURNEY_FOLDER
 
 MOVE=$(ls -td -- */ | head -n 1)
+echo -e "\n${MOVE} folder Created"
+sleep 2
 
 echo -e "\nMoving Midjourney Files..."
 sleep 2
