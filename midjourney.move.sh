@@ -52,8 +52,8 @@ echo -ne "
         sleep 2 ; 
         rm -rf * ;;
 
-	    2) 
-	    echo -e "\n The files and folders have not been deleted" ;;
+	2) 
+	echo -e "\n The files and folders have not been deleted" ;;
 	     
         0) 
         exit 0 ;;
