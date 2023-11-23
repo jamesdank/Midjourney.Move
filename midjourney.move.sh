@@ -13,11 +13,6 @@ mkdir -p $ZIP_FOLDER
 
 cd $ZIP_FOLDER
 
-if ! test -f *zip ; then
-  echo "No zip files found in" $ZIP_FOLDER
-  exit 0
-fi
-
 echo -e "\nUnzipping Files..."
 sleep 2
 unzip \*.zip
@@ -31,6 +26,8 @@ cd $MIDJOURNEY_FOLDER
 MOVE=$(ls -td -- */ | head -n 1)
 echo -e "\n${MOVE} folder Created"
 sleep 2
+
+cd $MOVE
 
 echo -e "\nMoving Midjourney Files..."
 sleep 2
@@ -52,8 +49,8 @@ echo -ne "
         sleep 2 ; 
         rm -rf * ;;
 
-	2) 
-	echo -e "\n The files and folders have not been deleted" ;;
+	      2) 
+	      echo -e "\n The files and folders have not been deleted" ;;
 	     
         0) 
         exit 0 ;;
