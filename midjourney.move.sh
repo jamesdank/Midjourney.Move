@@ -27,34 +27,36 @@ MOVE=$(ls -td -- */ | head -n 1)
 echo -e "\n${MOVE} folder Created"
 sleep 2
 
-cd $MOVE
+cd $ZIP_FOLDER
 
 echo -e "\nMoving Midjourney Files..."
 sleep 2
-find . -name '*.png' -exec cp {} $MOVE \;
+find . -name '*.png' -exec cp {} ${MIDJOURNEY_FOLDER}${MOVE} \;
 
 echo -ne "
-    Do you want to delete all files and folders in the $ZIP_FOLDER directory?
-    1) Yes
-    2) No
-    0) Exit
-    'Choose an option:') "
-        
-        read A
+	Do you want to delete all files and folders in the $ZIP_FOLDER directory?
+	1) Yes
+        2) No
+        0) Exit
+        'Choose an option:') "
             
-        case $A in
-        1) 
-        cd $ZIP_FOLDER ;
-        echo -e "\nRemoving all unwanted files and folders..." ; 
-        sleep 2 ; 
-        rm -rf * ;;
+            read A
+                
+            case $A in
+            1) 
+            cd $ZIP_FOLDER ;
+            echo -e "\nRemoving all unwanted files and folders..." ; 
+            sleep 2 ; 
+            rm -rf * ;
+            cd ~ ;;
 
-	      2) 
-	      echo -e "\n The files and folders have not been deleted" ;;
-	     
-        0) 
-        exit 0 ;;
-        
-        *) 
-        echo -e "Wrong option" ;;
-    esac
+            2) 
+            echo -e "\n The files and folders have not been deleted" ;;
+            
+            0) 
+            exit 0 ;;
+            
+            *) 
+            echo -e "Wrong option" ;;
+        esac
+}
