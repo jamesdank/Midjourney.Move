@@ -1,41 +1,42 @@
 #!/bin/bash
 
-######################################################################
-# Zip Files Folder *WARNING, all files in this folder will be deleted*
-ZIP_FOLDER="/home/$USER/midjourney/Zip.Files/"
-######################################################################
-# Midjourney pics folder
-MIDJOURNEY_FOLDER="/home/$USER/midjourney/"
-######################################################################
+function mjm () {
+    ##############################################################################
+    # Zip Files Folder *WARNING, all files in this folder will be deleted*
+    zip_folder="/home/$USER/midjourney/Zip.Files/"
+    ##############################################################################
+    # Midjourney pics folder
+    midjourney_folder="/home/$USER/midjourney/"
+    ##############################################################################
 
-mkdir -p $MIDJOURNEY_FOLDER
-mkdir -p $ZIP_FOLDER
+    mkdir -p $midjourney_folder
+    mkdir -p $zip_folder
 
-cd $ZIP_FOLDER
+    cd $zip_folder
 
-echo -e "\nUnzipping Files..."
-sleep 2
-unzip \*.zip
+    echo -e "\nUnzipping Files..."
+    sleep 2
+    unzip \*.zip
 
-echo -e "\nCreating new folder for files..."
-sleep 2
-mkdir ${MIDJOURNEY_FOLDER}midjourney-$(date +%Y-%m-%d_%H%M%S)
+    echo -e "\nCreating new folder for files..."
+    sleep 2
+    mkdir ${midjourney_folder}midjourney-$(date +%Y-%m-%d_%H%M%S)
 
-cd $MIDJOURNEY_FOLDER
+    cd $midjourney_folder
 
-MOVE=$(ls -td -- */ | head -n 1)
-echo -e "\n${MOVE} folder Created"
-sleep 2
+    move=$(ls -td -- */ | head -n 1)
+    echo -e "\n${move} folder Created"
+    sleep 2
 
-cd $ZIP_FOLDER
+    cd $zip_folder
 
-echo -e "\nMoving Midjourney Files..."
-sleep 2
-find . -name '*.png' -exec cp {} ${MIDJOURNEY_FOLDER}${MOVE} \;
+    echo -e "\nMoving Midjourney Files..."
+    sleep 2
+    find . -name '*.png' -exec cp {} ${midjourney_folder}${move} \;
 
-echo -ne "
-	Do you want to delete all files and folders in the $ZIP_FOLDER directory?
-	1) Yes
+    echo -ne "
+        Do you want to delete all files and folders in the $zip_folder directory?
+        1) Yes
         2) No
         0) Exit
         'Choose an option:') "
@@ -44,7 +45,7 @@ echo -ne "
                 
             case $A in
             1) 
-            cd $ZIP_FOLDER ;
+            cd $zip_folder ;
             echo -e "\nRemoving all unwanted files and folders..." ; 
             sleep 2 ; 
             rm -rf * ;
