@@ -61,3 +61,5 @@ function mjm () {
             echo -e "Wrong option" ;;
         esac
 }
+
+mjm
